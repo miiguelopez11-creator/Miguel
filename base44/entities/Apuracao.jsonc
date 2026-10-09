@@ -1,0 +1,175 @@
+{
+  "name": "Apuracao",
+  "type": "object",
+  "properties": {
+    "company_id": {
+      "type": "string",
+      "title": "Empresa"
+    },
+    "company_name": {
+      "type": "string",
+      "title": "Nome da Empresa"
+    },
+    "period": {
+      "type": "string",
+      "title": "Per\u00edodo (AAAA-MM)"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status da apura\u00e7\u00e3o",
+      "enum": [
+        "pendente",
+        "em_analise",
+        "aguardando_dimp",
+        "concluido"
+      ],
+      "default": "pendente"
+    },
+    "entrada_nfe_qtd": {
+      "type": "number",
+      "title": "Entradas \u00b7 NF-e autorizadas (qtd)"
+    },
+    "entrada_nfe_valor": {
+      "type": "number",
+      "title": "Entradas \u00b7 NF-e valor total"
+    },
+    "saida_nfe_qtd": {
+      "type": "number",
+      "title": "Sa\u00eddas \u00b7 NF-e autorizadas (qtd)"
+    },
+    "saida_nfe_valor": {
+      "type": "number",
+      "title": "Sa\u00eddas \u00b7 NF-e autorizadas (valor)"
+    },
+    "saida_nfe_cancel_qtd": {
+      "type": "number",
+      "title": "Sa\u00eddas \u00b7 NF-e canceladas (qtd)"
+    },
+    "saida_nfe_cancel_valor": {
+      "type": "number",
+      "title": "Sa\u00eddas \u00b7 NF-e canceladas (valor)"
+    },
+    "nfce_qtd": {
+      "type": "number",
+      "title": "Sa\u00eddas \u00b7 NFC-E autorizadas (qtd)"
+    },
+    "nfce_valor": {
+      "type": "number",
+      "title": "Sa\u00eddas \u00b7 NFC-E autorizadas (valor)"
+    },
+    "nfce_cancel_qtd": {
+      "type": "number",
+      "title": "Sa\u00eddas \u00b7 NFC-E canceladas (qtd)"
+    },
+    "nfce_cancel_valor": {
+      "type": "number",
+      "title": "Sa\u00eddas \u00b7 NFC-E canceladas (valor)"
+    },
+    "cfe_qtd": {
+      "type": "number",
+      "title": "Sa\u00eddas \u00b7 CF-E (qtd)"
+    },
+    "cfe_valor": {
+      "type": "number",
+      "title": "Sa\u00eddas \u00b7 CF-E (valor)"
+    },
+    "servico_prestado_qtd": {
+      "type": "number",
+      "title": "ISS \u00b7 servi\u00e7o prestado (qtd)"
+    },
+    "servico_prestado_valor": {
+      "type": "number",
+      "title": "ISS \u00b7 servi\u00e7o prestado (valor)"
+    },
+    "servico_tomado_qtd": {
+      "type": "number",
+      "title": "ISS \u00b7 servi\u00e7o tomado (qtd)"
+    },
+    "servico_tomado_valor": {
+      "type": "number",
+      "title": "ISS \u00b7 servi\u00e7o tomado (valor)"
+    },
+    "cte_qtd": {
+      "type": "number",
+      "title": "CT-e (qtd)"
+    },
+    "cte_valor": {
+      "type": "number",
+      "title": "CT-e (valor)"
+    },
+    "vendas_notas_fiscais": {
+      "type": "number",
+      "title": "Estudo \u00b7 vendas - notas fiscais"
+    },
+    "vendas_cupons_fiscais": {
+      "type": "number",
+      "title": "Estudo \u00b7 vendas - cupons fiscais"
+    },
+    "vendas_nfce": {
+      "type": "number",
+      "title": "Estudo \u00b7 vendas - NFC-e"
+    },
+    "vendas_nfse": {
+      "type": "number",
+      "title": "Estudo \u00b7 vendas - NFS-e (servi\u00e7os)"
+    },
+    "compras_notas_fiscais": {
+      "type": "number",
+      "title": "Estudo \u00b7 compras - notas fiscais"
+    },
+    "dimp_debito": {
+      "type": "number",
+      "title": "Estudo \u00b7 DIMP d\u00e9bito"
+    },
+    "dimp_credito": {
+      "type": "number",
+      "title": "Estudo \u00b7 DIMP cr\u00e9dito"
+    },
+    "dimp_pix": {
+      "type": "number",
+      "title": "Estudo \u00b7 DIMP PIX"
+    }
+  },
+  "required": [
+    "company_id",
+    "period"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
